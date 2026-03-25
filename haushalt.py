@@ -1,11 +1,14 @@
 import pandas as pd
 import numpy as np
+
+
 def verbrauch(jahresverbrauch):
 
-    dateiname_ods = 'Haushaltswerte.ods'
+    dateiname_csv = 'Haushaltswerte.csv'
 
 
-    df = pd.read_excel(dateiname_ods, engine='odf', index_col=0)
+    df = pd.read_csv(dateiname_csv, sep=';', decimal=',', index_col=0)
+
     monate_tage = {
         'Januar': 31,
         'Februar': 28,
@@ -23,9 +26,7 @@ def verbrauch(jahresverbrauch):
 
     jahres_profil_werte = []
 
-
     for monat, tage in monate_tage.items():
-
         tagesprofil = df[monat].values
 
         for _ in range(tage):
@@ -34,8 +35,12 @@ def verbrauch(jahresverbrauch):
     jahres_profil_werte = np.array(jahres_profil_werte)
     summe_profil = np.sum(jahres_profil_werte)
 
-
     verbrauch_15min_array = jahresverbrauch * (jahres_profil_werte / summe_profil)
+
+    print(verbrauch_15min_array[0:100])
 
     return verbrauch_15min_array
 
+
+
+mein_jahres_array = verbrauch(4000)
