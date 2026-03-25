@@ -48,7 +48,7 @@ def main():
         pv, dn, ar, bat_capacity, bat_power = 0, 30, "Süden", 0, 0
         hat_pv = st.radio("Haben Sie eine PV-Anlage im Einsatz?", ["Ja", "Nein"], index=1)
         if hat_pv == "Ja":
-            pv = st.slider("PV-Leistung [kWp]", 1, 100, 20)
+            pv = st.number_input("PV-Leistung [kWp]", 1, 25, 10)
             dn = st.number_input("Dachneigung [°]", 0, 60, 30)
             ar = st.selectbox("Ausrichtung", ["Norden", "Nord-Osten", "Osten", "Süd-Osten", "Süden", "Süd-Westen", "Westen", "Nord-Westen"])
             ar_deg = ar_dict[ar]
@@ -56,8 +56,8 @@ def main():
             # --- 3. Speicher (Nur relevant, wenn PV vorhanden) ---
             hat_speicher = st.radio("Haben Sie einen dazugehörigen Energiespeicher im Einsatz?", ["Ja", "Nein"], index=1)
             if hat_speicher == "Ja":
-                bat_capacity = st.slider("Speicherkapazität [kWh]", 1, 100, 10)
-                bat_power = st.slider("Abgabeleistung [kW]", 0.5,15.,3.) 
+                bat_capacity = st.number_input("Speicherkapazität [kWh]", 1, 100, 10)
+                bat_power = st.number_input("Abgabeleistung [kW]", 0,15,3) 
                 
         
         st.divider()
