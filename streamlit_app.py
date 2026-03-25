@@ -27,8 +27,8 @@ def main():
         #dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
         #statischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
         # UI Anzeige
-        dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18, 3500)
-        statisch = cm.calculate_static(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18, 3500)
+        dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
+        statisch = cm.calculate_static(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
 
         col_left, col_right = st.columns(2)
 
