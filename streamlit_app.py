@@ -3,7 +3,9 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+import calculator_main as cm
 from datetime import datetime
+
 
 # --- MODUL 1: LASTPROFIL GENERATOR ---
 class LoadProfileGenerator:
@@ -227,20 +229,10 @@ def main():
         calc_btn = st.button("Berechnung starten", type="primary")
 
     if calc_btn:
-        gen = LoadProfileGenerator()
-        te = TariffEngine()
-        opt = EnergyOptimizer(battery_cap_kwh=bat)
-        calc = EconomicCalculator()
-
-        # Simulation
-        df = gen.get_combined_dataframe({'h0_kwh': h0, 'hp_kwh': hp, 'ev_km': ev, 'pv_kwp': pv})
-        df['spot_price_pure'] = te.generate_synthetic_spot_prices(df.index)
-        df['dynamic_price_brutto'] = te.get_dynamic_tariff_components(df['spot_price_pure'])
-        df = opt.simulate_smart_system(df, use_dynamic_logic=smart)
-        metrics = calc.calculate_annual_metrics(df, te.get_static_tariff_details(), te, enwg_module=enwg)
+        dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
 
         # UI Anzeige
-        st.divider()
+        '''st.divider()
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Ersparnis/Jahr", f"{metrics['Ersparnis [€/J]']} €")
         c2.metric("Autarkiegrad", f"{metrics['Autarkiegrad [%]']} %")
@@ -252,7 +244,7 @@ def main():
             st.plotly_chart(plot_cost_comparison(metrics), use_container_width=True)
         with col_right:
             date_sel = st.date_input("Detailansicht wählen", value=datetime(2025, 6, 15))
-            st.plotly_chart(plot_load_profile(df, (pd.to_datetime(date_sel), pd.to_datetime(date_sel)+pd.Timedelta(days=2))), use_container_width=True)
+            st.plotly_chart(plot_load_profile(df, (pd.to_datetime(date_sel), pd.to_datetime(date_sel)+pd.Timedelta(days=2))), use_container_width=True)'''
     else:
         st.info("Bitte links Parameter wählen und 'Berechnung starten' klicken.")
 
