@@ -152,8 +152,8 @@ def main():
 
     # --- HAUPTBEREICH (Ergebnisse) ---
     if calc_btn:
-        dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn,h0)
-        statischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn,h0)
+        dynamischer_preis = cm.calculate_dynamic(hp, dn, ar_deg, pv, km_woche, km_wochenende, verbrauch_100km, wallbox_power, ev_charge_hour, h0, bat_cap, bat_power)
+        statischer_preis = cm.calculate_dynamic(hp, dn, ar_deg, pv, km_woche, km_wochenende, verbrauch_100km, wallbox_power, ev_charge_hour, h0, bat_cap, bat_power)
         # h0 = Hausstrom
         # UI Anzeige
         #dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
