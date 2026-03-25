@@ -102,7 +102,12 @@ def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag
     mein_pv_array = []
     mein_ea_array = []
     mein_wp_array = wp.berechne_waermepumpe_verbrauch(temp_datei="2025_15min_temperaturverlauf.csv", t_base=15.0, jahresbedarf=wp_bedarf, verbose=False)
-    mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
+    if pv_kwp != 0:    
+        mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
+    else:
+        mein_pv_array.clear()
+        for i in range(35040):
+            mein_pv_array.append(0)
     mein_ea_array = ea.generiere_lade_profil(fahrleistung_woche_tag_km=ea_wochentag, fahrleistung_wochenende_tag_km=ea_wochenende, verbrauch_pro_100km=ea_verbrauch, wallbox_leistung_kw=ea_leistung, ladebeginn_stunde=ea_beginn)
     
     for i in range(35040):
