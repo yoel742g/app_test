@@ -22,10 +22,10 @@ def lade_strompreise_als_array(csv_dateiname):
 
 
 if __name__ == "__main__":
-    pv_datei_name = "pv_ertrag_15min_komplettes_jahr.csv"
-    preis_datei_name = "GANZESganzes_jahr_nur_brutto_2025_15min.csv"
+    pv_datei_name = "2025_15min_pv-ertrag.csv"
+    preis_datei_name = "2025_15min_spotmarktpreis.csv"
 
-    mein_wp_array = wp.berechne_waermepumpe_verbrauch(temp_datei="temperatur_verlauf_2025_15min.csv", t_base=15.0, jahresbedarf=4000.0, verbose=False)
+    mein_wp_array = wp.berechne_waermepumpe_verbrauch(temp_datei="2025_15min_temperaturverlauf.csv", t_base=15.0, jahresbedarf=4000.0, verbose=False)
     mein_pv_array = pv.pv_erstellen()
     mein_ea_array = ea.generiere_lade_profil(fahrleistung_woche_tag_km=40.0, fahrleistung_wochenende_tag_km=15.0, verbrauch_pro_100km=18.0, wallbox_leistung_kw=11.0, ladebeginn_stunde=18)
     mein_preis_array = lade_strompreise_als_array(preis_datei_name)
