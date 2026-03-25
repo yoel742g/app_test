@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import calculator_main as cm
 from datetime import datetime
 
-
+'''
 # --- MODUL 1: LASTPROFIL GENERATOR ---
 class LoadProfileGenerator:
     def __init__(self, year=2025):
@@ -210,7 +210,7 @@ def plot_cost_comparison(metrics):
                  color=['Statisch', 'Dynamisch'], color_discrete_map={'Statisch': '#9e9e9e', 'Dynamisch': '#005eb8'},
                  title="Jahreskosten Vergleich (€)")
     return fig
-
+'''
 # --- MAIN STREAMLIT APP ---
 def main():
     st.set_page_config(page_title="SachsenEnergie AG - Tarif-Check", layout="wide")
@@ -235,7 +235,19 @@ def main():
         dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
         statisch = cm.calculate_static(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
 
+        col_left, col_right = st.columns(2)
+
+        # 2. Werte in der rechten Spalte ausgeben
         with col_right:
+            st.subheader("🛠️ Debugging-Werte")
+            
+            # Variante A: Simples st.write (zeigt Listen, Dicts, Floats etc. an)
+            # st.write("**Wert Dynamisch:**", dynamisch)
+            # st.write("**Wert Statisch:**", statisch)
+            
+            # Variante B: Wenn es reine Zahlen/Strings sind, sieht st.metric toll aus:
+            st.metric("Kosten Dynamisch", f"{dynamisch} €")
+            st.metric("Kosten Statisch", f"{statisch} €")
             
         
         '''st.divider()
@@ -246,6 +258,7 @@ def main():
         c4.metric("Preis Statisch", f"{metrics['Effektiver Preis Statisch [ct/kWh]']} ct")
 
         col_left, col_right = st.columns(2)
+        
         with col_left: 
             st.plotly_chart(plot_cost_comparison(metrics), use_container_width=True)
         with col_right:
