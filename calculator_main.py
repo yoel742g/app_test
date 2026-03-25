@@ -26,6 +26,11 @@ def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochenta
     pv_datei_name = "2025_15min_pv-ertrag.csv"
     preis_datei_name = "2025_15min_spotmarktpreis.csv"
 
+    mein_pv_array = []
+    mein_wp_array = []
+    mein_ea_array = []
+    mein_preis_array = []
+    mein_haushalt_array = []
     mein_wp_array = wp.berechne_waermepumpe_verbrauch(temp_datei="2025_15min_temperaturverlauf.csv", t_base=15.0, jahresbedarf=wp_bedarf, verbose=False)
     if pv_kwp != 0:    
         mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
@@ -94,6 +99,8 @@ def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag
     pv_datei_name = "2025_15min_pv-ertrag.csv"
 
     mein_preis_array = []
+    mein_pv_array = []
+    mein_ea_array = []
     mein_wp_array = wp.berechne_waermepumpe_verbrauch(temp_datei="2025_15min_temperaturverlauf.csv", t_base=15.0, jahresbedarf=wp_bedarf, verbose=False)
     mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
     mein_ea_array = ea.generiere_lade_profil(fahrleistung_woche_tag_km=ea_wochentag, fahrleistung_wochenende_tag_km=ea_wochenende, verbrauch_pro_100km=ea_verbrauch, wallbox_leistung_kw=ea_leistung, ladebeginn_stunde=ea_beginn)
