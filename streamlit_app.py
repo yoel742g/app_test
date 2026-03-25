@@ -57,7 +57,7 @@ def main():
             hat_speicher = st.radio("Haben Sie einen dazugehörigen Energiespeicher im Einsatz?", ["Ja", "Nein"], index=1)
             if hat_speicher == "Ja":
                 bat_capacity = st.slider("Speicherkapazität [kWh]", 1, 100, 10)
-                bat_power = st.slider("Abgabeleistung [kW]", 0.5,15,3) 
+                bat_power = st.slider("Abgabeleistung [kW]", 0.5,15.,3.) 
                 
         
         st.divider()
