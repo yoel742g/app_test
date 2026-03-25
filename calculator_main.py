@@ -38,7 +38,7 @@ def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochenta
     mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
     mein_ea_array = ea.generiere_lade_profil(fahrleistung_woche_tag_km=ea_wochentag, fahrleistung_wochenende_tag_km=ea_wochenende, verbrauch_pro_100km=ea_verbrauch, wallbox_leistung_kw=ea_leistung, ladebeginn_stunde=ea_beginn)
     mein_preis_array = lade_strompreise_als_array(preis_datei_name)
-    mein_haushalt_array = ha.generate_yearly_profile_2025(ha_verbrauch)
+    mein_haushalt_array = ha.verbrauch(ha_verbrauch)
     #einspeisevergütung
     for i in range(len(mein_pv_array)):
         verbrauch = mein_wp_array[i] + mein_ea_array[i] + mein_haushalt_array[i]
@@ -104,7 +104,7 @@ def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag
     for i in range(35040):
         mein_preis_array.append(32.4)
     
-    mein_haushalt_array = ha.generate_yearly_profile_2025(ha_verbrauch)
+    mein_haushalt_array = ha.verbrauch(ha_verbrauch)
     #einspeisevergütung
     for i in range(len(mein_pv_array)):
         verbrauch = mein_wp_array[i] + mein_ea_array[i] + mein_haushalt_array[i]
