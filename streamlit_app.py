@@ -44,17 +44,21 @@ def main():
         st.divider()
 
         # --- 2. PV-Anlage ---
-        pv, dn, ar, bat = 0, 30, "Süden", 0
+        ar_dict = {"Süden":0, "Süd-Westen":45, "Westen":90, "Nord-Westen":135, "Norden":180, "Nord-Osten":-135, "Osten":-90, "Süd-Osten":-45}
+        pv, dn, ar, bat_capacity, bat_power = 0, 30, "Süden", 0, 0
         hat_pv = st.radio("Haben Sie eine PV-Anlage im Einsatz?", ["Ja", "Nein"], index=1)
         if hat_pv == "Ja":
             pv = st.slider("PV-Leistung [kWp]", 1, 100, 20)
             dn = st.number_input("Dachneigung [°]", 0, 60, 30)
             ar = st.selectbox("Ausrichtung", ["Norden", "Nord-Osten", "Osten", "Süd-Osten", "Süden", "Süd-Westen", "Westen", "Nord-Westen"])
+            ar_deg = ar_dict[ar]
             
             # --- 3. Speicher (Nur relevant, wenn PV vorhanden) ---
             hat_speicher = st.radio("Haben Sie einen dazugehörigen Energiespeicher im Einsatz?", ["Ja", "Nein"], index=1)
             if hat_speicher == "Ja":
-                bat = st.slider("Speicherkapazität [kWh]", 1, 100, 10)
+                bat_capacity = st.slider("Speicherkapazität [kWh]", 1, 100, 10)
+                bat_power = st.slider("Abgabeleistung [kW]", 0.5,15,3) 
+                
         
         st.divider()
 
@@ -150,11 +154,12 @@ def main():
 
     # --- HAUPTBEREICH (Ergebnisse) ---
     if calc_btn:
-        #dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
-        #statischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
+        dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn,h0)
+        statischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn,h0)
+        # h0 = Hausstrom
         # UI Anzeige
-        dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
-        statisch = cm.calculate_static(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
+        #dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
+        #statisch = cm.calculate_static(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
 
         col_left, col_right = st.columns(2)
 
