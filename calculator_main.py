@@ -83,7 +83,7 @@ def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag
     mein_pv_array = pv.pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp)
     mein_ea_array = ea.generiere_lade_profil(fahrleistung_woche_tag_km=ea_wochentag, fahrleistung_wochenende_tag_km=ea_wochenende, verbrauch_pro_100km=ea_verbrauch, wallbox_leistung_kw=ea_leistung, ladebeginn_stunde=ea_beginn)
     
-    for i in range(35040)
+    for i in range(35040):
         mein_preis_array.append(32.4)
     
     mein_haushalt_array = ha.generate_yearly_profile_2025(ha_verbrauch)
