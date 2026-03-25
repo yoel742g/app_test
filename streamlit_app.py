@@ -153,11 +153,11 @@ def main():
     # --- HAUPTBEREICH (Ergebnisse) ---
     if calc_btn:
         dynamischer_preis = cm.calculate_dynamic(hp, dn, ar_deg, pv, km_woche, km_wochenende, verbrauch_100km, wallbox_power, ev_charge_hour, h0, bat_capacity, bat_power)
-        statischer_preis = cm.calculate_dynamic(hp, dn, ar_deg, pv, km_woche, km_wochenende, verbrauch_100km, wallbox_power, ev_charge_hour, h0, bat_capacity, bat_power)
+        statischer_preis = cm.calculate_static(hp, dn, ar_deg, pv, km_woche, km_wochenende, verbrauch_100km, wallbox_power, ev_charge_hour, h0, bat_capacity, bat_power)
         # h0 = Hausstrom
         # UI Anzeige
-        #dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
-        #statisch = cm.calculate_static(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
+        #dynamischer_preis = cm.calculate_dynamic(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
+        #statischer_preis = cm.calculate_static(4000.0, 30, 10, 7.5, 40, 15, 18, 11, 18, 3500)
 
         col_left, col_right = st.columns(2)
 
