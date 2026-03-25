@@ -70,7 +70,7 @@ def main():
         if hat_ev == "Ja":
             km_woche = st.number_input("Fahrstrecke pro Wochentag [km]", min_value=0, value=40, step=5)
             km_wochenende = st.number_input("Fahrstrecke pro Tag am Wochenende [km]", min_value=0, value=20, step=5)
-            verbrauch_100km = st.number_input("Verbrauch auf 100km [kWh]", min_value=0, value=15, step=0.1)
+            verbrauch_100km = st.number_input("Verbrauch auf 100km [kWh]", min_value=0., value=15., step=0.1)
             
             uhrzeiten = [f"{i:02d}:00" for i in range(24)]
             auswahl_zeit = st.selectbox("Wann laden Sie normalerweise Ihr Auto?", options=uhrzeiten, index=17)
