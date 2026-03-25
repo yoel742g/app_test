@@ -63,22 +63,20 @@ def main():
         st.divider()
 
         # --- 4. E-Auto ---
-        ev = 0
-        ev_charge_hour = 17 # Default
-        wallbox_power = "11kW"
+        ev_charge_hour = 0 # default Ladezeit 00:00 Uhr
+        wallbox_power = 0
+        km_woche, km_wochenende, verbrauch_100km = 0, 0, 0
         hat_ev = st.radio("Besitzen Sie ein E-Auto, welches Sie zuhause laden?", ["Ja", "Nein"], index=1)
         if hat_ev == "Ja":
             km_woche = st.number_input("Fahrstrecke pro Wochentag [km]", min_value=0, value=40, step=5)
             km_wochenende = st.number_input("Fahrstrecke pro Tag am Wochenende [km]", min_value=0, value=20, step=5)
-            
-            # Berechnung der jährlichen Fahrleistung: (5 Werktage * 52) + (2 Wochenendtage * 52)
-            ev = (km_woche * 5 * 52) + (km_wochenende * 2 * 52)
+            verbrauch_100km = st.number_input("Verbrauch auf 100km [kWh]", min_value=0, value=15, step=0.1)
             
             uhrzeiten = [f"{i:02d}:00" for i in range(24)]
             auswahl_zeit = st.selectbox("Wann laden Sie normalerweise Ihr Auto?", options=uhrzeiten, index=17)
             ev_charge_hour = int(auswahl_zeit.split(":")[0])
             
-            wallbox_power = st.selectbox("Welche Ausgangsleistung liefert Ihre Wallbox?", ["11 kW", "22 kW"])
+            wallbox_power = st.selectbox("Welche Ausgangsleistung liefert Ihre Wallbox? [kW]", [11,22])
 
         st.divider()
 
