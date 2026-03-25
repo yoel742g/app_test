@@ -234,6 +234,10 @@ def main():
         # UI Anzeige
         dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
         statisch = cm.calculate_static(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
+
+        with col_right:
+            
+        
         '''st.divider()
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Ersparnis/Jahr", f"{metrics['Ersparnis [€/J]']} €")
