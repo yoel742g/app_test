@@ -170,8 +170,8 @@ def main():
             # st.write("**Wert Statisch:**", statisch)
             
             # Variante B: Wenn es reine Zahlen/Strings sind, sieht st.metric toll aus:
-            st.metric("Kosten Dynamisch", f"{dynamisch} €")
-            st.metric("Kosten Statisch", f"{statisch} €")
+            st.metric("Kosten Dynamisch", f"{dynamischer_preis} €")
+            st.metric("Kosten Statisch", f"{statischer_preis} €")
     
     
 
