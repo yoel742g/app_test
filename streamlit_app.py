@@ -45,7 +45,7 @@ def main():
 
         # --- 2. PV-Anlage ---
         ar_dict = {"Süden":0, "Süd-Westen":45, "Westen":90, "Nord-Westen":135, "Norden":180, "Nord-Osten":-135, "Osten":-90, "Süd-Osten":-45}
-        pv, dn, ar, bat_capacity, bat_power = 0, 30, "Süden", 0, 0
+        pv, dn, ar, bat_capacity, bat_power, ar_deg = 0, 30, "Süden", 0, 0, ar_deg
         hat_pv = st.radio("Haben Sie eine PV-Anlage im Einsatz?", ["Ja", "Nein"], index=1)
         if hat_pv == "Ja":
             pv = st.number_input("PV-Leistung [kWp]", 1, 25, 10)
