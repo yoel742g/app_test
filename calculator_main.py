@@ -4,15 +4,8 @@ import PVAnlage as pv
 import waermepumpe as wp
 import eAuto as ea
 import haushalt as ha
-summe = 0
+
 einspeiseverguetung = 7.78
-
-einspeise = 0
-abnahme = 0
-
-speicher_ladung = 0
-speicher_max = 11
-speicher_leistung = 3
 
 def lade_strompreise_als_array(csv_dateiname):
     df = pd.read_csv(csv_dateiname, sep=';', decimal=',')
@@ -21,7 +14,7 @@ def lade_strompreise_als_array(csv_dateiname):
     return preis_array
 
 
-def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch):
+def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch, speicher_max, speicher_leistung):
     summe = 0
     einspeiseverguetung = 7.78
     
@@ -29,8 +22,7 @@ def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochenta
     abnahme = 0
     
     speicher_ladung = 0
-    speicher_max = 11
-    speicher_leistung = 3
+
     pv_datei_name = "2025_15min_pv-ertrag.csv"
     preis_datei_name = "2025_15min_spotmarktpreis.csv"
 
@@ -84,7 +76,7 @@ def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochenta
     print(summe)
     return summe
 
-def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch):
+def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch, speicher_max, speicher_leistung):
     summe = 0
     einspeiseverguetung = 7.78
     
@@ -92,8 +84,7 @@ def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag
     abnahme = 0
     
     speicher_ladung = 0
-    speicher_max = 11
-    speicher_leistung = 3
+
     pv_datei_name = "2025_15min_pv-ertrag.csv"
 
     mein_preis_array = []
