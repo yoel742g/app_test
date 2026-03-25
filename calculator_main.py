@@ -22,6 +22,15 @@ def lade_strompreise_als_array(csv_dateiname):
 
 
 def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch):
+    summe = 0
+    einspeiseverguetung = 7.78
+    
+    einspeise = 0
+    abnahme = 0
+    
+    speicher_ladung = 0
+    speicher_max = 11
+    speicher_leistung = 3
     pv_datei_name = "2025_15min_pv-ertrag.csv"
     preis_datei_name = "2025_15min_spotmarktpreis.csv"
 
@@ -76,6 +85,15 @@ def calculate_dynamic(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochenta
     return summe
 
 def calculate_static(wp_bedarf, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn, ha_verbrauch):
+    summe = 0
+    einspeiseverguetung = 7.78
+    
+    einspeise = 0
+    abnahme = 0
+    
+    speicher_ladung = 0
+    speicher_max = 11
+    speicher_leistung = 3
     pv_datei_name = "2025_15min_pv-ertrag.csv"
 
     mein_preis_array = []
