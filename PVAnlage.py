@@ -2,16 +2,16 @@ import requests
 import pandas as pd
 import numpy as np
 
-def exportiere_15min_pv_daten():
+def exportiere_15min_pv_daten(pv_neigung, pv_ausrichtung, pv_kwp):
     # ==========================================
     # 1. PARAMETER DEINER ANLAGE
     # ==========================================
     lat = 51.0504  # Breitengrad (z.B. Dresden)
     lon = 13.7373  # Längengrad
-    kwp = 10.0  # Anlagenleistung in kWp
+    kwp = pv_kwp  # Anlagenleistung in kWp
     loss = 14  # Systemverluste in %
-    angle = 35  # Dachneigung in Grad
-    aspect = 0  # Ausrichtung (0 = Süd, 90 = West, -90 = Ost)
+    angle = pv_neigung  # Dachneigung in Grad
+    aspect = pv_ausrichtung  # Ausrichtung (0 = Süd, 90 = West, -90 = Ost)
 
     url = "https://re.jrc.ec.europa.eu/api/v5_2/seriescalc"
 
@@ -92,8 +92,8 @@ def lade_pv_erzeugung_als_array(csv_dateiname):
     return pv_array
 
 
-def pv_erstellen():
-    exportiere_15min_pv_daten()
+def pv_erstellen(pv_neigung, pv_ausrichtung, pv_kwp):
+    exportiere_15min_pv_daten(pv_neigung, pv_ausrichtung, pv_kwp)
     pv_array = lade_pv_erzeugung_als_array("FINALpv_ertrag_15min_komplettes_jahr.csv")
     return pv_array
 
