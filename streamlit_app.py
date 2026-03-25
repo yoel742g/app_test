@@ -43,22 +43,7 @@ def main():
             # Variante B: Wenn es reine Zahlen/Strings sind, sieht st.metric toll aus:
             st.metric("Kosten Dynamisch", f"{dynamisch} €")
             st.metric("Kosten Statisch", f"{statisch} €")
-            
         
-        '''st.divider()
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Ersparnis/Jahr", f"{metrics['Ersparnis [€/J]']} €")
-        c2.metric("Autarkiegrad", f"{metrics['Autarkiegrad [%]']} %")
-        c3.metric("Preis Dynamisch", f"{metrics['Effektiver Preis Dynamisch [ct/kWh]']} ct")
-        c4.metric("Preis Statisch", f"{metrics['Effektiver Preis Statisch [ct/kWh]']} ct")
-
-        col_left, col_right = st.columns(2)
-        
-        with col_left: 
-            st.plotly_chart(plot_cost_comparison(metrics), use_container_width=True)
-        with col_right:
-            date_sel = st.date_input("Detailansicht wählen", value=datetime(2025, 6, 15))
-            st.plotly_chart(plot_load_profile(df, (pd.to_datetime(date_sel), pd.to_datetime(date_sel)+pd.Timedelta(days=2))), use_container_width=True)'''
     else:
         st.info("Bitte links Parameter wählen und 'Berechnung starten' klicken.")
 
