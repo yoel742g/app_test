@@ -2,4 +2,8 @@ streamlit
 pandas
 numpy
 plotly
-
+calculator_main
+eAuto
+haushalt
+PVAnlage
+waermepumpe
