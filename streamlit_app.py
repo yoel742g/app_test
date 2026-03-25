@@ -229,9 +229,11 @@ def main():
         calc_btn = st.button("Berechnung starten", type="primary")
 
     if calc_btn:
-        dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
-
+        #dynamischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
+        #statischer_preis = cm.calculate_dynamic(wp_jahr, pv_neigung, pv_ausrichtung, pv_kwp, ea_wochentag, ea_wochenende, ea_verbrauch, ea_leistung, ea_beginn)
         # UI Anzeige
+        dynamisch = cm.calculate_dynamic(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
+        statisch = cm.calculate_static(4000.0, 30, 10, 7500, 40, 15, 18, 11, 18)
         '''st.divider()
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Ersparnis/Jahr", f"{metrics['Ersparnis [€/J]']} €")
